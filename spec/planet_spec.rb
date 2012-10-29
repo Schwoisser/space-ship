@@ -3,12 +3,13 @@ require "spec_helper"
 describe Planet do
   
   before :each do
-    @planet = Planet.new("TestPlanet",args)
+    @planet = Planet.new("TestPlanet")
   end
-  describe '#energyOutput' do
-    it "should be 10 by default" do
-      @generator.energyOutput.should == 10
+  describe '#name' do
+    it "should return its name" do
+      @planet.name.should == "TestPlanet"
     end
+    
   end
   
 end
