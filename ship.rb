@@ -144,6 +144,13 @@ class Ship
     end
   end
   
+  def maneuver(name)
+    case name[0]
+    when "intercept"
+    when "hold"
+    when "evade"
+  end
+  
   def weopon(command)
   end
 
