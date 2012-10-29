@@ -5,4 +5,8 @@ class Planet
     @name = name
     @population = population
   end
+  def shop
+    
+  end
+  
 end
