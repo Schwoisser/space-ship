@@ -4,7 +4,6 @@ describe Planet do
   
   before :each do
     @planet = Planet.new("TestPlanet")
-    
     @engine    = Engine.new("TestEngine",1,1)
     @generator = Generator.new("TestGenerator",6)
     @sensor    = Sensor.new("TestSensor",1,1)

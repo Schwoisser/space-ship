@@ -1,8 +1,9 @@
 class Ship
   attr_reader :name,:weoponMounts
+
   attr_accessor :hp,:engine,:generator,:shield,:weopons,:course,
                 :radar,:coords,:near_planet,:landed
-  
+                
   def initialize(name,hp,weoponMounts,
     engine=false,generator=false,sensor=false,
     shield=false,weopons=false)
@@ -102,6 +103,7 @@ class Ship
     end
   end
   
+
   def land
     if @near_planet && !@landed
       @near_planet.land(self)
@@ -120,6 +122,7 @@ class Ship
     end    
   end
   
+
   def shieldStatus
     if @shield
       @shield.shieldStatus
@@ -165,6 +168,13 @@ class Ship
     if @radar.size >= nr
       attacks(@radar[nr-1])
     end
+  end
+  
+  def maneuver(name)
+    case name[0]
+    when "intercept"
+    when "hold"
+    when "evade"
   end
   
   def weopon(command)
