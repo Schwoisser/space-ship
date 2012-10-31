@@ -1,8 +1,7 @@
 class Ship
   attr_reader :name,:weoponMounts
 
-  attr_accessor :hp,:engine,:generator,:shield,:weopons,:course,
-                :radar,:coords,:near_planet,:landed
+  attr_accessor :hp,:engine,:generator,:shield,:weopons,:course,:radar,:coords,:near_planet,:landed
                 
   def initialize(name,hp,weoponMounts,
     engine=false,generator=false,sensor=false,
@@ -175,6 +174,7 @@ class Ship
     when "intercept"
     when "hold"
     when "evade"
+    end
   end
   
   def weopon(command)

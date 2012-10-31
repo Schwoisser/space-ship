@@ -14,7 +14,8 @@ class Planet
   
   def start(ship)
     @ships.delete ship
-
+  end
+  
   def shop
     
   end
