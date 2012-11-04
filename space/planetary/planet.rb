@@ -6,6 +6,8 @@ class Planet
     @coords = coords
     @population = population
     @ships = []
+    @goods = []
+    @government_attributes = []
   end
   
   def land(ship)
