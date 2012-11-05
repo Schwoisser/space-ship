@@ -5,6 +5,13 @@ class Component
     @damage = 0
     @crew=[]
     @active = true
+    @commands = [:on,:off,:report]
+  end
+  
+  def exec(command)
+    if (@commands.include? command)
+      self.method(command).call
+    end
   end
   
   def energyConsumption

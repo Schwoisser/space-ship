@@ -1,7 +1,8 @@
 class Ship
   attr_reader :name,:weoponMounts
-  attr_accessor :hp,:engine,:generator,:shield,:weopons,:course,:radar,:coords
-  
+
+  attr_accessor :hp,:engine,:generator,:shield,:weopons,:course,:radar,:coords,:near_planet,:landed
+                
   def initialize(name,hp,weoponMounts,
     engine=false,generator=false,sensor=false,
     shield=false,weopons=false)
@@ -16,13 +17,19 @@ class Ship
       @weopons << weopons
     end
     
-    
-    
     @componentCommands = [:engine,:generator,:shield,:attack,:sensor,:plot]
     @shipCommands = [:report,:scan,:speed]
+    
     @radar = []
+    @near_planet = false
+    @landed = false
     @course = false
+    
     @coords = Coords.new(0,0,0)
+  end
+  
+  def sensor_signature
+    1
   end
   
   def takeDamage(points)
@@ -61,25 +68,23 @@ class Ship
     arg = args[1].intern
         case com
         when :engine
-          if (@engine.respond_to? arg)
-            @engine.method(arg).call
-          end
+          @engine.exec(arg)
         when :generator
-          if (@generator.respond_to? arg)
-            @generator.method(arg).call
-          end
+          @generator.exec(arg)
         when :shield
-         if (@shield.respond_to? arg)
-            @shield.method(arg).call
-          end
+          @shield.exec(arg)
         when :sensor
-         if (@sensor.respond_to? arg)
-            @sensor.method(arg).call
-          end
+          @sensor.exec(arg)
         when :plot
           plot(args[1],args[2],args[3])
         when :attack
           attack(args[1])
+        when :land
+          land
+        when :start
+          start
+        else
+          puts "Unknown command"
         end
     end
   end
@@ -97,6 +102,26 @@ class Ship
     end
   end
   
+
+  def land
+    if @near_planet && !@landed
+      @near_planet.land(self)
+      @landed = true
+    else
+      puts "No planet near."
+    end
+  end
+  
+  def start
+    if @landed
+      @near_planet.start(self)
+      @landed = false
+    else
+      puts "Not landed."
+    end    
+  end
+  
+
   def shieldStatus
     if @shield
       @shield.shieldStatus
@@ -149,6 +174,7 @@ class Ship
     when "intercept"
     when "hold"
     when "evade"
+    end
   end
   
   def 

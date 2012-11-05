@@ -1,0 +1,55 @@
+<html>
+  <head>
+    <title>form</title>
+    <script src="js/jquery.js"></script>
+	<script>
+		$(document).ready(function() {
+			
+			function processNewsResponse(data) {
+				$('#articles').html(data);
+			}
+
+			
+			$('#news').hide();
+			$('#input').hide();
+			
+			$('#show').click(function() {
+				$('#news').show();
+				$('#input').fadeOut();
+			  $.get("articles","all",processNewsResponse);
+			})
+			
+			$('#create').click(function() {
+				$('#news').fadeOut();
+				$('#input').show();
+			})
+			
+			$('#send').click(function() {
+				$.post("/article", "title="+($('#title').val())+"&text="+$('#text').val(),function () {});
+			})
+
+
+		});
+	</script>
+	
+  </head>
+  <body>
+    <h2>index</h2>
+ 	<a href="/login">Login</a>
+ 	<a href="/register">Register</a>
+ 	<button id="show">Show News</button>
+ 	<button id="create">Create Article</button>
+ 	
+ 	<div id="news" class="hidden">
+ 		<h1>News</h1>
+ 		<div id="articles"></div>
+ 	</div>
+ 	
+ 	<div id="input" class="hidden">
+ 		<input type="text" id="title">
+ 		<textarea id="text"></textarea>>
+ 		<button id="send">Submit</button>
+ 	</div>
+ 	
+  </body>
+</html>
