@@ -151,6 +151,8 @@ class Ship
     when "evade"
   end
   
+  def 
+  
   def weopon(command)
   end
 
