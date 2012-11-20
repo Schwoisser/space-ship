@@ -20,4 +20,10 @@ describe Planet do
     end
   end
   
+  describe '#buy' do
+    it "should buy the goods and load them to the ship" do
+      
+    end
+  end
+  
 end

@@ -1,15 +1,17 @@
 class Ship
   attr_reader :name,:weoponMounts
 
-  attr_accessor :hp,:engine,:generator,:shield,:weopons,:course,:radar,:coords,:near_planet,:landed
+  attr_accessor :capacity,:hp,:engine,:generator,:shield,:weopons,:course,:radar,:coords,:near_planet,:landed
                 
   def initialize(name,hp,weoponMounts,
     engine=false,generator=false,sensor=false,
-    shield=false,weopons=false)
+    shield=false,weopons=false, capacity = 10)
     
-    @name,@hp,@weoponMounts = name,hp,weoponMounts
+    @name,@hp,@weoponMounts,@capacity = name,hp,weoponMounts,capacity
     #parts
     @engine,@generator,@sensor,@shield = engine,generator,sensor,shield
+    
+    @goods = []
     
     #weopons array
     @weopons = []
@@ -26,6 +28,26 @@ class Ship
     @course = false
     
     @coords = Coords.new(0,0,0)
+  end
+  
+  def load(good)
+    if free_capacity >= good.amount
+      goods << good
+      true
+    else
+      false
+    end
+  end
+  
+  def unload(good)
+    
+  end
+  
+  def free_capacity
+    cap = 0
+    goods.each do |good|
+      cap += good.amount
+    end
   end
   
   def sensor_signature
