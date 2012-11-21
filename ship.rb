@@ -31,8 +31,9 @@ class Ship
   end
   
   def load(good)
+
     if free_capacity >= good.amount
-      goods << good
+      @goods << good
       true
     else
       false
@@ -40,12 +41,11 @@ class Ship
   end
   
   def unload(good)
-    goods.each do |g|
+    @goods.each do |g|
       if g.name == good.name && g.amount >= good.amount
         g.amount -= good.amount
-        
         if g.amount == 0
-          goods.delete g
+          @goods.delete g
         end
         return true
       end
@@ -54,10 +54,11 @@ class Ship
   end
   
   def free_capacity
-    cap = 0
-    goods.each do |good|
-      cap += good.amount
+    cap = @capacity
+    @goods.each do |good|
+      cap -= good.amount
     end
+    return cap
   end
   
   def sensor_signature
