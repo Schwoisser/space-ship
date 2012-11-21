@@ -22,7 +22,11 @@ class Planet
     @ships.delete ship
   end
   
-  def shop
+  def buy(good)
+    @goods.
+  end
+  
+  def sell(good)
     
   end
   
