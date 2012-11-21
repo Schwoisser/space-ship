@@ -23,3 +23,13 @@ get "/" do
   session["user"] ||= nil
   erb :index
 end
+
+get "/login" do
+  erb :login
+  #TODO handle login and redirect to ui
+end
+
+get "/ui" do
+  #TODO user handling
+  erb :ui
+end

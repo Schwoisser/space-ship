@@ -19,5 +19,16 @@ describe Planet do
       @planet.start @ship
     end
   end
+  describe '#buy' do
+    it "should buy and load a good" do
+      
+    end
+  end
+  
+  describe '#sell' do
+    it "should sell and unload a good" do
+      
+    end    
+  end
   
 end

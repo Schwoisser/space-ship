@@ -10,6 +10,10 @@ class Planet
     @government_attributes = []
   end
   
+  def tick
+    
+  end
+  
   def land(ship)
     @ships << ship
   end

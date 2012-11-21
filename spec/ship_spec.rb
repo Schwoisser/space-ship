@@ -87,6 +87,10 @@ describe Ship do
     end
   end
   
+  describe "#load" do
+    
+  end
+  
   describe "#command" do
     it "should deactivate the shield" do
       @ship.command(["shield","off"])
