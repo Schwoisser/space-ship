@@ -10,7 +10,7 @@ describe Ship do
     @shield    = Shield.new("TestShield",1,20,1)
     @weopon    = Weopon.new("TestWeopon",1,1,1,1)
     
-    @ship      = Ship.new("name",20,2,@engine,@generator,@sensor,@shield,@weopon)
+    @ship      = Ship.new("name",20,2,@engine,@generator,@sensor,@shield,@weopon,10)
     
     @engine    = Engine.new("TestEngine",1,1)
     @generator = Generator.new("TestGenerator",6)
@@ -18,7 +18,7 @@ describe Ship do
     @shield    = Shield.new("TestShield",1,20,1)
     @weopon    = Weopon.new("TestWeopon",1,1,1,1)
     
-    @enemy     = Ship.new("enemy",20,2,@engine,@generator,@sensor,@shield,@weopon)
+    @enemy     = Ship.new("enemy",20,2,@engine,@generator,@sensor,@shield,@weopon,10)
   end
   describe '#takeDamage' do
     it "should one hit shouldn't destroy the ships shields" do
@@ -88,7 +88,14 @@ describe Ship do
   end
   
   describe "#load" do
-    
+    it "should load something on the ship" do
+      @ship.load(Good.new("test",5)).should == true
+      @ship.unload(Good.new("test",5)).should == true
+      
+      @ship.load(Good.new("test",11)).should == false
+      @ship.unload(Good.new("test",11)).should == false
+      
+    end
   end
   
   describe "#command" do
