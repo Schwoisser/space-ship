@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
 	<name>SpaceShip</name>
-<<<<<<< HEAD
 	<comment></comment>
 	<projects>
 	</projects>
@@ -15,13 +14,10 @@
 	<natures>
 		<nature>com.aptana.ruby.core.rubynature</nature>
 		<nature>com.aptana.projects.webnature</nature>
-=======
 	<comment>Simulation</comment>
 	<projects>
 	</projects>
 	<buildSpec>
 	</buildSpec>
-	<natures>
->>>>>>> 4dc3a9dd3fd2deff6882e4a45b65ff8fca7b2585
 	</natures>
 </projectDescription>
