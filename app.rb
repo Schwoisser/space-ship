@@ -3,10 +3,9 @@ require "sinatra"
 require "active_record"
 require "sinatra/activerecord"
 require './models/user'
-require './models/sector'
+require './models/planet'
 require './models/own'
-require './models/attack'
-require './models/article'
+
 
 enable :sessions
 
