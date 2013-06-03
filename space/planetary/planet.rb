@@ -1,12 +1,13 @@
 class Planet
   
   attr_reader :coords,:population,:ships
+  attr_accessor :goods
   
   def initialize(coords,population=rand(10)+1)
     @coords = coords
     @population = population
     @ships = []
-    @goods = []
+    @goods = Goods.new()
     @government_attributes = []
     @production=[]
   end
@@ -24,26 +25,11 @@ class Planet
   end
   
   def buy(good)
-    goods.each do |g|
-      if g.name == good.name && g.amount >= good.amount
-        g.amount -= good.amount
-        
-        if g.amount == 0
-          goods.delete g
-        end
-        return true
-      end
-    end
-    return false
+    @goods.unload(good)
   end
   
   def sell(good)
-        if free_capacity >= good.amount
-      goods << good
-      true
-    else
-      false
-    end
+    @goods.load(good)
   end
 
   

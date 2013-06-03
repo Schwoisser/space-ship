@@ -21,7 +21,9 @@ describe Planet do
   end
   describe '#buy' do
     it "should buy and load a good" do
-      
+     @planet.sell Good.new("test",2)
+     puts @planet.goods
+     g = @planet.buy(Good.new("test",1))
     end
   end
   

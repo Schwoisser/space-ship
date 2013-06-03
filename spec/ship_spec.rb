@@ -82,19 +82,18 @@ describe Ship do
   end
   
   describe "#speed" do
-    it "should return the sensor range" do
+    it "should return the speed" do
       @ship.speed.should == 1
     end
   end
   
   describe "#load" do
     it "should load something on the ship" do
-      @ship.load(Good.new("test",5)).should == true
-      @ship.unload(Good.new("test",5)).should == true
-      
+      @ship.load(Good.new("test",5)).name.should == "test"
+      @ship.unload(Good.new("test",5)).name.should == "test"
+      #with the wrong capacity
       @ship.load(Good.new("test",11)).should == false
-      @ship.unload(Good.new("test",11)).should == false
-      
+      @ship.unload(Good.new("test",11)).should == false      
     end
   end
   
