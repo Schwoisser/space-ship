@@ -3,8 +3,8 @@ class CreatePlanets < ActiveRecord::Migration
         create_table :planets do |t|
           t.integer :x
           t.integer :y
-          t.string :planet
-          t.integer :user_id
+          t.string :type
+          t.string :name
   end
   def down
      drop_table :sectors
