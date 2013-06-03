@@ -11,7 +11,7 @@ class Ship
     #parts
     @engine,@generator,@sensor,@shield = engine,generator,sensor,shield
     
-    @goods = []
+    @goods = Goods.new(10)
     
     #weopons array
     @weopons = []
@@ -31,34 +31,11 @@ class Ship
   end
   
   def load(good)
+    @goods.load(good)
+  end
 
-    if free_capacity >= good.amount
-      @goods << good
-      true
-    else
-      false
-    end
-  end
-  
   def unload(good)
-    @goods.each do |g|
-      if g.name == good.name && g.amount >= good.amount
-        g.amount -= good.amount
-        if g.amount == 0
-          @goods.delete g
-        end
-        return true
-      end
-    end
-    return false
-  end
-  
-  def free_capacity
-    cap = @capacity
-    @goods.each do |good|
-      cap -= good.amount
-    end
-    return cap
+    @goods.unload(good)
   end
   
   def sensor_signature

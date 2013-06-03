@@ -5,6 +5,11 @@ class Space
     @ai = []
     @stop = false
     @thread
+    @planets = generate_planets
+  end
+  
+  def generate_planets()
+    
   end
   
   def startThread
