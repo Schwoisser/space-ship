@@ -9,7 +9,6 @@ class Generator < Component
   end
   
   def report
-    status
-    puts "Energy output: #{energyOutput}"
+    status+"Energy output: #{energyOutput}"
   end
 end

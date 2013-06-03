@@ -4,7 +4,7 @@ class Space
     @ships= []
     @ai = []
     @stop = false
-    @thread
+    @thread = startThread
     @planets = generate_planets
   end
   
@@ -13,9 +13,9 @@ class Space
   end
   
   def startThread
-    @thread = Thread.new{
+    Thread.new{
       while not @stop
-        sleep(15)
+        sleep(5)
         puts "ping"
         moveShips
         aiCommands
@@ -39,6 +39,15 @@ class Space
       puts ai.name
     end
     
+  end
+  
+  def find_player(name)
+    @ships.each do |ship|
+      if ship.name == name
+        return ship
+      end
+    end
+    return nil
   end
 
   
@@ -84,7 +93,7 @@ class Space
   end
   
   def createEncounter
-    if (rand(6)+1) >= 5
+    if (rand(6)+1) >= 5 && @ai < 20
       addAIShip(rand(100),rand(100),rand(100),generateEnemy)
       return true
     else

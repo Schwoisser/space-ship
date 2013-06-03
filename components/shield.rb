@@ -34,8 +34,7 @@ class Shield < Component
   end
   
   def report
-    status
-    puts "Shield: #{shieldStatus}"
+    status+"Shield: #{shieldStatus}"
   end
   
 end

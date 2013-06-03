@@ -1,3 +1,7 @@
+require "./space/planetary/goods"
+require_relative "./space/coords"
+require_relative "./space/planetary/planet"
+require_relative "./space/planetary/goods"
 class Ship
   attr_reader :name,:weoponMounts
 
@@ -94,14 +98,14 @@ class Ship
         when :start
           start
         else
-          puts "Unknown command"
+          "Unknown command"
         end
     end
   end
   
   def plot(x=0,y=0,z=0)
-    puts"ploting new course"
     @course = Coords.new(x.to_i,y.to_i,z.to_i)
+    "ploting new course"
   end
   
   def sensorRange
@@ -118,7 +122,7 @@ class Ship
       @near_planet.land(self)
       @landed = true
     else
-      puts "No planet near."
+      "No planet near."
     end
   end
   
@@ -127,7 +131,7 @@ class Ship
       @near_planet.start(self)
       @landed = false
     else
-      puts "Not landed."
+      "Not landed."
     end    
   end
   
@@ -152,23 +156,23 @@ class Ship
     @weopons.each do |w|
       w.report
     end
-    @engine.report
-    @generator.report
-    @sensor.report
-    @shield.report
-    puts "HP : #{@hp}"
-    puts "Position: #{@coords}"
-    puts "Target: #{@course}"
-    puts @radar
+    @engine.report +
+    @generator.report +
+    @sensor.report +
+    @shield.report +
+    "HP : #{@hp}" +
+    " Position: #{@coords}" +
+    " Target: #{@course}" + 
+    "On radar: " +scan
   end
   
   def scan
     if not @radar.empty?
       @radar.each do |blip|
-        puts "Detected: "+blip.name+" HP/Shield: #{blip.hp} #{blip.shieldStatus}"+blip.coords.to_s
+        "Detected: "+blip.name+" HP/Shield: #{blip.hp} #{blip.shieldStatus}"+blip.coords.to_s
       end
     else
-      puts "Only void."
+      "Only void."
     end
   end
   

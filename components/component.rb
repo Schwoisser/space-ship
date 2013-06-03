@@ -59,9 +59,7 @@ class Component
   end
   
   def status
-    puts @name
-    puts "Damage: #{@damage}"
-    puts "Active: #{@active}"
+    @name + " Damage: #{@damage}"+" Active: #{@active} "
   end
   
   def report

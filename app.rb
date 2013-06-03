@@ -5,6 +5,16 @@ require "sinatra/activerecord"
 require './models/user'
 require './models/planet'
 require './models/own'
+require './space'
+require './ship'
+
+require "./components/component"
+require "./components/engine"
+require "./components/generator"
+require "./components/shield"
+require "./components/weopon"
+require "./components/sensor"
+
 
 
 enable :sessions
@@ -17,6 +27,8 @@ configure do
     :database => 'db/development.sqlite3')
 end
 
+$space = Space.new
+
 helpers do
   def logged_in?
     if session[:user]
@@ -28,12 +40,12 @@ helpers do
   
   #Flash helper based on the one from here:
   #https://github.com/daddz/sinatra-dm-login/blob/master/helpers/sinatra.rb
-def show_flash(key)
-  if session[key]
-    flash = session[key]
-    session[key] = false
-    flash
-    end
+  def show_flash(key)
+    if session[key]
+      flash = session[key]
+      session[key] = false
+      flash
+      end
   end
 end
 
@@ -44,7 +56,6 @@ end
 
 get "/login" do
   erb :login
-  #TODO handle login and redirect to ui
 end
 
 post "/login" do
@@ -59,6 +70,14 @@ post "/login" do
   
   if authenticated
     session[:user] = user.name
+    engine = Engine.new("Mass Drive",5,5)
+    generator = Generator.new("Mass gen",5)
+    shield = Shield.new("Shield 3",5,50,5)
+    weopons = Weopon.new("Mass Driver",5,5,5,5)
+    sensor = Sensor.new("TestSensor",10,100)
+
+    ship = Ship.new(user.name,100,1,engine,generator,sensor,shield,weopons)
+    $space.addShip(rand(60),rand(60),rand(60),ship)
   else
     return "Incorrect Password"
   end
@@ -75,7 +94,7 @@ post "/register" do
   user.name = params[:name]
   user.password = params[:password]
   if user.save
-    "Succes!"
+    erb :login
   end
 end
 
@@ -93,3 +112,11 @@ get "/ui" do
     redirect "/"
   end
 end
+
+post "/command" do
+  ship=$space.find_player(session[:user])
+  ship.command(params[:commando].split)
+end
+
+
+

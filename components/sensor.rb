@@ -9,7 +9,6 @@ class Sensor < Component
   end
   
   def report
-    status
-    puts "Range: #{range}"
+    status + "Range: #{range}"
   end  
 end

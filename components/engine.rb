@@ -9,8 +9,7 @@ class Engine < Component
   end
   
   def report
-    status
-    puts "Speed: #{speed}"
+    status+"Speed: #{speed}"
   end
   
 end

@@ -2,8 +2,24 @@
   <head>
     <title>Map</title>
     <script src="js/jquery.js"></script>
+    <script>
+    	$(document).ready(function() {
+			
+			$('#send').click(function() {
+				$.post("/command", "commando="+($('#command').val()),function (data) {
+					$('#output').val($('#output').val()+"\n"+data);
+				});
+			})
+
+
+		});
+    </script>
   </head>
   <body>
   	<div>Welcome <%= @user.name %></div>
+  	<textarea style="height:300px; width:600px" id="output"></textarea>
+  	<p></p>
+  	<input id="command" size="55" type="text" name="command"></input>
+  	<button id="send" text="send">send</button>
   </body>
 </html>

@@ -10,7 +10,6 @@ class Weopon < Component
       @loaded = false
       return (rand(@damageDice)+@damageMin) * efficency
     else
-      puts "Weopon not loaded"
       return 0
     end
   end
@@ -24,7 +23,6 @@ class Weopon < Component
   end
   
   def report
-    status
-    puts "Loaded: #{@loaded}"
+    status + "Loaded: #{@loaded}"
   end
 end
