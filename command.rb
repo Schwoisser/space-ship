@@ -40,5 +40,6 @@ weopons = Weopon.new("Mass Driver",5,5,5,5)
 sensor = Sensor.new("TestSensor",10,100)
 
 ship = Ship.new("Name",100,1,engine,generator,sensor,shield,weopons)
+
 com = Command.new(ship)
 com.gameLoop
